@@ -61,13 +61,7 @@ def cred(el):
 
 def get_user(chat_id):
     login = ALL.LOGIN[chat_id]
-    res = {}
-    for el in ALL.USERS:
-        el1 = user(el)
-        if el1["login"] == login:
-            res = el1
-            break
-    return res
+    return get_profile(login)
 
 def get_profile(login):
     res = {}
