@@ -128,7 +128,6 @@ async def _start(message):
         await message.answer('Привет! Добро пожаловать в НикольКредитБанк!')
     else:
         await message.answer("Недостаточно прав!")
-    savelogin()
 
 async def _reg(message):
     COMNAME = "reg"
@@ -152,10 +151,9 @@ async def _reg(message):
                     return 0
             register(conn, _name, _surname, _class, _login, _password)
             await message.answer("Регистрация проведена успешно!")
-        ALL.USERS = SELECT_USERS(conn)
+            ALL.USERS = SELECT_USERS(conn)
     else:
         await message.answer("Недостаточно прав!")
-    savelogin()
 
 async def _login(message):
     COMNAME = "login"
@@ -169,28 +167,27 @@ async def _login(message):
             await message.answer("""Пожалуйста, введите после команды через пробел логин и пароль, например:
 /login admin 228pass
 """)
-        else:
-            for el in ALL.USERS:
-                el1 = user(el)
-                if el1["login"] == _login:
-                    break
-            else:
-                await message.answer("Такого пользователя не существует!")
-                return 0
+            return 0
+        for el in ALL.USERS:
             el1 = user(el)
-            if _login == "default":
-                await message.answer("Вход не удался!")
-            elif _login in ALL.LOGIN.values():
-                await message.answer("Человек с этим аккаунтом уже вошел в систему!")
-            elif _password == el1["password"]:
-                await message.answer("Вход успешен!")
-                ALL.LOGIN[message.chat.id] = _login
-            else:
-                await message.answer("Пароль неверный!")
+            if el1["login"] == _login:
+                break
+        else:
+            await message.answer("Такого пользователя не существует!")
+            return 0
+        el1 = user(el)
+        if _login == "default":
+            await message.answer("Вход не удался!")
+        elif _login in ALL.LOGIN.values():
+            await message.answer("Человек с этим аккаунтом уже вошел в систему!")
+        elif _password == el1["password"]:
+            await message.answer("Вход успешен!")
+            ALL.LOGIN[message.chat.id] = _login
+        else:
+            await message.answer("Пароль неверный!")
         print(ALL.LOGIN)
     else:
         await message.answer("Недостаточно прав!")
-    savelogin()
 
 async def _unlogin(message):
     COMNAME = "unlogin"
@@ -208,7 +205,6 @@ async def _unlogin(message):
         
     else:
         await message.answer("Недостаточно прав!")
-    savelogin()
 
 async def _help(message):
     COMNAME = "help"
@@ -219,7 +215,6 @@ async def _help(message):
         await message.answer(HELP)
     else:
         await message.answer("Недостаточно прав!")
-    savelogin()
 
 async def _profile(message):
     COMNAME = "profile"
@@ -231,11 +226,9 @@ async def _profile(message):
     elif can_call(COMNAME, message.chat.id):
         try:
             b = True
-            res = []
             for i in ALL.USERS:
                 i1 = user(i)
                 if i1["login"] == ALL.LOGIN[message.chat.id]:
-                    res = i1
                     break
             else:
                 b = False
@@ -254,7 +247,6 @@ async def _profile(message):
             await message.answer("Вы не зарегистрировны или не вошли в аккаунт!")
     else:
         await message.answer("Недостаточно прав!")
-    savelogin()
     print(ALL.LOGIN)
 
 async def _userlist(message):
@@ -269,9 +261,6 @@ async def _userlist(message):
         for user in ALL.USERS:
             res += str(user) + "\n"
         await message.answer(res)
-    else:
-        await message.answer("Недостаточно прав!")
-    savelogin()
 
 async def _request(message):
     COMNAME = "request"
@@ -292,7 +281,6 @@ async def _request(message):
             await message.answer("Пожалуйста, введите через пробел количество пятерок")
     else:
         await message.answer("Недостаточно прав!")
-    savelogin()
 
 async def _my_credits(message):
     COMNAME = "my_credits"
@@ -318,7 +306,6 @@ async def _my_credits(message):
             
     else:
         await message.answer("Недостаточно прав!")
-    savelogin()
 
 async def _alogin(message):
     COMNAME = "alogin"
@@ -334,9 +321,6 @@ async def _alogin(message):
             await message.answer("Вход успешен!")
         else:
             await message.answer("Введите логин через пробел!")
-    else:
-        await message.answer("Недостаточно прав!")
-    savelogin()
 
 async def _aprofile(message):
     COMNAME = "aprofile"
@@ -359,9 +343,6 @@ async def _aprofile(message):
             await message.answer(msg)
         else:
             await message.answer("Введите логин через пробел!")
-    else:
-        await message.answer("Недостаточно прав!")
-    savelogin()
 
 async def _execcom(message):
     global conn
@@ -376,9 +357,6 @@ async def _execcom(message):
         ALL.USERS = SELECT_USERS(conn)
         ALL.CREDITS = SELECT_CREDITS(conn)
         await message.answer(res)
-    else:
-        await message.answer("Недостаточно прав!")
-    savelogin()
 
 async def _stop(message):
     global conn
@@ -392,8 +370,6 @@ async def _stop(message):
         await bot.delete_message(message.chat.id, message.message_id)
         time.sleep(5)
         raise KeyboardInterrupt
-    else:
-        await message.answer("Недостаточно прав!")
 
 async def _msgall(message):
     COMNAME = "msgall"
@@ -407,8 +383,6 @@ async def _msgall(message):
             await bot.delete_message(message.chat.id, message.message_id)
             for user in ALL.LOGIN:
                 await bot.send_message(user, "*Сообщение!*\n" + text, parse_mode="Markdown")
-    else:
-        await message.answer("Недостаточно прав!")
 
 async def _acredits(message):
     COMNAME = "acredits"
@@ -434,9 +408,6 @@ async def _acredits(message):
             if res == "":
                 res = "Кредитов нет!"
             await message.answer(res)
-    else:
-        await message.answer("Недостаточно прав!")
-    savelogin()
 
 COMLIST = {
     "start": _start,
