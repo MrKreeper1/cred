@@ -31,7 +31,7 @@ def get_allowed_commands(priv):
     if priv >= 1:
         com += ["reg", "login", "unlogin", "help", "start", "profile", "request", "my_credits"]
     if priv >= 2:
-        com += ["alogin", "userlist"]
+        com += ["alogin", "aprofile", "userlist"]
     return com
 
 def user(el):
@@ -61,13 +61,23 @@ def cred(el):
 
 def get_user(chat_id):
     login = ALL.LOGIN[chat_id]
-    user = []
+    res = {}
     for el in ALL.USERS:
         el1 = user(el)
         if el1["login"] == login:
-            user = el1
+            res = el1
             break
-    return el1
+    return res
+
+def get_profile(login):
+    res = {}
+    for el in ALL.USERS:
+        el1 = user(el)
+        if el1["login"] == login:
+            res = el1
+            break
+    print(res)
+    return res
 
 def savelogin():
     if conf.save:
@@ -106,7 +116,25 @@ def can_call(com, chat_id):
             break
     return com in get_allowed_commands(lev)
 
-async def start(message):
+def con_con():
+    global PATH
+    while True:
+        time.sleep(0.25)
+        if keyboard.is_pressed("shift+c"):
+            con(create_connection(PATH))
+        if keyboard.is_pressed("ctrl+c"):
+            return 0
+
+def atex():
+    global conn
+    conf.config_init()
+    print(conf.res)
+    savelogin()
+    if conf.close_conn == "1":
+        conn = None
+    logging.shutdown()
+
+async def _start(message):
     COMNAME = "start"
     logging.info(message)
     set_default_login(message.chat.id)
@@ -116,7 +144,8 @@ async def start(message):
     else:
         await message.answer("Недостаточно прав!")
     savelogin()
-async def reg(message):
+
+async def _reg(message):
     COMNAME = "reg"
     logging.info(message)
     set_default_login(message.chat.id)
@@ -143,7 +172,7 @@ async def reg(message):
         await message.answer("Недостаточно прав!")
     savelogin()
 
-async def login(message):
+async def _login(message):
     COMNAME = "login"
     logging.info(message)
     set_default_login(message.chat.id)
@@ -178,7 +207,7 @@ async def login(message):
         await message.answer("Недостаточно прав!")
     savelogin()
 
-async def unlogin(message):
+async def _unlogin(message):
     COMNAME = "unlogin"
     logging.info(message)
     if ALL.LOGIN[message.chat.id] == "default":
@@ -196,7 +225,7 @@ async def unlogin(message):
         await message.answer("Недостаточно прав!")
     savelogin()
 
-async def userhelp(message):
+async def _help(message):
     COMNAME = "help"
     logging.info(message)
     set_default_login(message.chat.id)
@@ -207,7 +236,7 @@ async def userhelp(message):
         await message.answer("Недостаточно прав!")
     savelogin()
 
-async def profile(message):
+async def _profile(message):
     COMNAME = "profile"
     logging.info(message)
     set_default_login(message.chat.id)
@@ -243,7 +272,7 @@ async def profile(message):
     savelogin()
     print(ALL.LOGIN)
 
-async def userlist(message):
+async def _userlist(message):
     COMNAME = "userlist"
     logging.info(message)
     set_default_login(message.chat.id)
@@ -259,7 +288,7 @@ async def userlist(message):
         await message.answer("Недостаточно прав!")
     savelogin()
 
-async def request(message):
+async def _request(message):
     COMNAME = "request"
     logging.info(message)
     set_default_login(message.chat.id)
@@ -269,14 +298,18 @@ async def request(message):
     elif can_call(COMNAME, message.chat.id):
         #пока без одобрения
         num = message.get_args()
-        execute_query(conn, f"INSERT INTO credits(user, num) VALUES(\"{ALL.LOGIN[message.chat.id]}\", {num})")
-        execute_query(conn, f"UPDATE users SET balance = balance + 1 WHERE login=\"{ALL.LOGIN[message.chat.id]}\"")
-        ALL.CREDITS = SELECT_CREDITS(conn)
+        if num:
+            execute_query(conn, f"INSERT INTO credits(user, num) VALUES(\"{ALL.LOGIN[message.chat.id]}\", {num})")
+            execute_query(conn, f"UPDATE users SET balance = balance + 1 WHERE login=\"{ALL.LOGIN[message.chat.id]}\"")
+            ALL.CREDITS = SELECT_CREDITS(conn)
+            await message.answer("Кредит одобрен!")
+        else:
+            await message.answer("Пожалуйста, введите через пробел количество пятерок")
     else:
         await message.answer("Недостаточно прав!")
     savelogin()
 
-async def my_credits(message):
+async def _my_credits(message):
     COMNAME = "my_credits"
     logging.info(message)
     set_default_login(message.chat.id)
@@ -302,7 +335,7 @@ async def my_credits(message):
         await message.answer("Недостаточно прав!")
     savelogin()
 
-async def alogin(message):
+async def _alogin(message):
     COMNAME = "alogin"
     logging.info(message)
     set_default_login(message.chat.id)
@@ -320,8 +353,46 @@ async def alogin(message):
         await message.answer("Недостаточно прав!")
     savelogin()
 
+async def _aprofile(message):
+    COMNAME = "aprofile"
+    logging.info(message)
+    set_default_login(message.chat.id)
+    if ALL.LOGIN[message.chat.id] == "default":
+        await message.answer("Вы еще не вошли в систему!")
+    elif can_call(COMNAME, message.chat.id):
+        user_ = message.get_args()
+        if len(user_) > 0:
+            i1 = get_profile(user_)
+            msg = f"""Профиль
+    Логин: {i1["login"]}
+    Имя: {i1["name"]}
+    Фамилия: {i1["surname"]}
+    Класс: {i1["class"]}
+    Долги: {i1["balance"]}
+    """
+            await message.answer(msg)
+        else:
+            await message.answer("Введите логин через пробел!")
+    else:
+        await message.answer("Недостаточно прав!")
+    savelogin()
+
+COMLIST = {
+    "start": _start,
+    "reg": _reg,
+    "login": _login,
+    "unlogin": _unlogin,
+    "help": _help,
+    "profile": _profile,
+    "userlist": _userlist,
+    "request": _request,
+    "my_credits": _my_credits,
+    "alogin": _alogin,
+    "aprofile": _aprofile
+}
+
 async def main():
-    global PATH, conn
+    global PATH, conn, COMLIST
     
     conf.config_init()
     print(conf.res)
@@ -330,8 +401,8 @@ async def main():
         with open("save", "r") as f:
             ALL.LOGIN = json.load(f)
         login1 = {}
-        for el in ALL.LOGIN:
-            login1[int(el)] = ALL.LOGIN[el]
+        for mid in ALL.LOGIN:
+            login1[int(mid)] = ALL.LOGIN[mid]
         ALL.LOGIN = login1.copy()
 
 
@@ -343,34 +414,10 @@ async def main():
     print(ALL.USERS)
     print(ALL.CREDITS)
 
-    dp.register_message_handler(start, commands = ['start'])
-    dp.register_message_handler(reg, commands = ['reg'])
-    dp.register_message_handler(login, commands = ["login"])
-    dp.register_message_handler(unlogin, commands = ["unlogin"])
-    dp.register_message_handler(userhelp, commands = ["help"])
-    dp.register_message_handler(profile, commands = ["profile"])
-    dp.register_message_handler(request, commands=["request"])
-    dp.register_message_handler(my_credits, commands=["my_credits"])
-    dp.register_message_handler(alogin, commands=["alogin"])
-    dp.register_message_handler(userlist, commands=["userlist"])
-
+    for comname in COMLIST:
+        dp.register_message_handler(COMLIST[comname], commands=[comname])
     await dp.start_polling(bot)
-def atex():
-    global conn
-    conf.config_init()
-    print(conf.res)
-    savelogin()
-    if conf.close_conn == "1":
-        conn = None
-    logging.shutdown()
-def con_con():
-    global PATH
-    while True:
-        time.sleep(0.25)
-        if keyboard.is_pressed("shift+c"):
-            con(create_connection(PATH))
-        if keyboard.is_pressed("ctrl+c"):
-            return 0
+
 if __name__ == "__main__":
     atexit.register(atex)
     thread = Thread(target=con_con)

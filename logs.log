@@ -1,7 +1,7 @@
 INFO:aiogram.dispatcher.dispatcher:Start polling.
 WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
 INFO:aiogram.dispatcher.dispatcher:Start polling.
-INFO:root:{"message_id": 449, "from": {"id": 1647252544, "is_bot": false, "first_name": "�������", "last_name": "������", "username": "denis_chernoknizets", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "�������", "last_name": "������", "username": "denis_chernoknizets", "type": "private"}, "date": 1682808062, "text": "/profile", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 449, "from": {"id": 1647252544, "is_bot": false, "first_name": "�������", "last_name": "������", "username": "denis_chernoknizets", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "�������", "last_name": "������", "username": "denis_chernoknizets", "type": "private"}, "date": 1682808062, "text": "/profile", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
 WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
 INFO:aiogram.dispatcher.dispatcher:Start polling.
 INFO:root:{"message_id": 451, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "denis_chernoknizets", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "denis_chernoknizets", "type": "private"}, "date": 1682808104, "text": "/my_Credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
@@ -336,4 +336,545 @@ WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
 INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
 INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
 INFO:aiogram.dispatcher.dispatcher:Start polling.
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 508, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299667, "text": "/profile", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-32' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conf' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 163, in _profile
+    savelogin()
+  File "e:\cred\otherfs.py", line 52, in savelogin
+    if conf.save:
+NameError: name 'conf' is not defined
+INFO:root:{"message_id": 510, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299673, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-40' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conf' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 223, in _my_credits
+    savelogin()
+  File "e:\cred\otherfs.py", line 52, in savelogin
+    if conf.save:
+NameError: name 'conf' is not defined
+INFO:root:{"message_id": 512, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299679, "text": "/help", "entities": [{"type": "bot_command", "offset": 0, "length": 5}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-47' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conf' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 128, in _help
+    savelogin()
+  File "e:\cred\otherfs.py", line 52, in savelogin
+    if conf.save:
+NameError: name 'conf' is not defined
+INFO:root:{"message_id": 514, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299686, "text": "/request 228", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-56' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conn' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 192, in _request
+    execute_query(conn, f"INSERT INTO credits(user, num) VALUES(\"{ALL.LOGIN[message.chat.id]}\", {num})")
+NameError: name 'conn' is not defined
+INFO:root:{"message_id": 515, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299691, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-62' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conf' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 223, in _my_credits
+    savelogin()
+  File "e:\cred\otherfs.py", line 52, in savelogin
+    if conf.save:
+NameError: name 'conf' is not defined
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 517, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299763, "text": "/request 228", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-8' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conn' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 193, in _request
+    execute_query(conn, f"INSERT INTO credits(user, num) VALUES(\"{ALL.LOGIN[message.chat.id]}\", {num})")
+NameError: name 'conn' is not defined
+INFO:root:{"message_id": 518, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299765, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-12' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conf' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 225, in _my_credits
+    savelogin()
+  File "e:\cred\otherfs.py", line 52, in savelogin
+    if conf.save:
+NameError: name 'conf' is not defined
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 520, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299822, "text": "/request", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-6' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conn' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 193, in _request
+    execute_query(conn, f"INSERT INTO credits(user, num) VALUES(\"{ALL.LOGIN[message.chat.id]}\", {num})")
+NameError: name 'conn' is not defined
+INFO:root:{"message_id": 521, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299826, "text": "/request 5", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-12' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conn' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 193, in _request
+    execute_query(conn, f"INSERT INTO credits(user, num) VALUES(\"{ALL.LOGIN[message.chat.id]}\", {num})")
+NameError: name 'conn' is not defined
+INFO:root:{"message_id": 523, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299869, "text": "/profile", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-42' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conf' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 163, in _profile
+    savelogin()
+  File "e:\cred\otherfs.py", line 52, in savelogin
+    if conf.save:
+NameError: name 'conf' is not defined
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 525, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299909, "text": "/unlogin", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-6' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conf' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 117, in _unlogin
+    savelogin()
+  File "e:\cred\otherfs.py", line 52, in savelogin
+    if conf.save:
+NameError: name 'conf' is not defined
+INFO:root:{"message_id": 527, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299911, "text": "/profile", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-12' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conf' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 163, in _profile
+    savelogin()
+  File "e:\cred\otherfs.py", line 52, in savelogin
+    if conf.save:
+NameError: name 'conf' is not defined
+INFO:root:{"message_id": 529, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299920, "text": "/login admin qwerty123", "entities": [{"type": "bot_command", "offset": 0, "length": 6}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-21' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conf' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 99, in _login
+    savelogin()
+  File "e:\cred\otherfs.py", line 52, in savelogin
+    if conf.save:
+NameError: name 'conf' is not defined
+INFO:root:{"message_id": 531, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299921, "text": "/profile", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-26' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conf' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 163, in _profile
+    savelogin()
+  File "e:\cred\otherfs.py", line 52, in savelogin
+    if conf.save:
+NameError: name 'conf' is not defined
+INFO:root:{"message_id": 533, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299924, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-31' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conf' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 226, in _my_credits
+    savelogin()
+  File "e:\cred\otherfs.py", line 52, in savelogin
+    if conf.save:
+NameError: name 'conf' is not defined
+INFO:root:{"message_id": 535, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685299928, "text": "/request 228", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-38' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conn' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 193, in _request
+    execute_query(conn, f"INSERT INTO credits(user, num) VALUES(\"{ALL.LOGIN[message.chat.id]}\", {num})")
+NameError: name 'conn' is not defined
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 536, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300013, "text": "/request 228", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-10' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'conn' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\tgcommands.py", line 192, in _request
+    execute_query(conn, f"INSERT INTO credits(user, num) VALUES(\"{ALL.LOGIN[message.chat.id]}\", {num})")
+NameError: name 'conn' is not defined
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 538, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300175, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+INFO:root:{"message_id": 540, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300179, "text": "/request 228", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO credits(user, num) VALUES("admin", 228)
+INFO:root:Query executed successfully -UPDATE users SET balance = balance + 1 WHERE login="admin"
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 541, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300247, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+INFO:root:{"message_id": 543, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300249, "text": "/request", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:The error 'near ")": syntax error' occurred in 'INSERT INTO credits(user, num) VALUES("admin", )'
+INFO:root:Query executed successfully -UPDATE users SET balance = balance + 1 WHERE login="admin"
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 545, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300325, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+INFO:root:{"message_id": 547, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300332, "text": "/profile", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 549, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300353, "text": "/request 1234567891011121314151617181920", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO credits(user, num) VALUES("admin", 1234567891011121314151617181920)
+INFO:root:Query executed successfully -UPDATE users SET balance = balance + 1 WHERE login="admin"
+INFO:root:{"message_id": 551, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300356, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+INFO:root:{"message_id": 553, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300364, "text": "/profile", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 555, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300384, "text": "/profile", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 557, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300452, "text": "/request", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 559, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300454, "text": "/request", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 561, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300455, "text": "/request", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 563, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300457, "text": "/profile", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 565, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300750, "text": "/help", "entities": [{"type": "bot_command", "offset": 0, "length": 5}]}
+INFO:root:{"message_id": 567, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300765, "text": "/alogin VictorS", "entities": [{"type": "bot_command", "offset": 0, "length": 7}]}
+INFO:root:{"message_id": 569, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300768, "text": "/profile", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 571, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300776, "text": "/alogin admin", "entities": [{"type": "bot_command", "offset": 0, "length": 7}]}
+INFO:root:{"message_id": 573, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685300840, "text": "/unlogin", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 575, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685301080, "text": "/profile", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 577, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685301088, "text": "/login admin qwerty123", "entities": [{"type": "bot_command", "offset": 0, "length": 6}]}
+INFO:root:{"message_id": 579, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685301090, "text": "/profile", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 581, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685301096, "text": "/aprofile VictorS", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 583, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685301118, "text": "/aprofile VictorS", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-6' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=TypeError("'list' object is not callable")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\main.py", line 364, in _aprofile
+    i1 = get_profile(user_[1])
+  File "e:\cred\main.py", line 75, in get_profile
+    el1 = user(el)
+TypeError: 'list' object is not callable
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 584, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685301175, "text": "/aprofile VictorS", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-7' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=UnboundLocalError("local variable 'user' referenced before assignment")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\main.py", line 364, in _aprofile
+    i1 = get_profile(user_[1])
+  File "e:\cred\main.py", line 75, in get_profile
+    el1 = user(el)
+UnboundLocalError: local variable 'user' referenced before assignment
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 585, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685301205, "text": "/aprofile VictorS", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 587, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685301227, "text": "/aprofile VictorS", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-8' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=TypeError('list indices must be integers or slices, not str')>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\main.py", line 366, in _aprofile
+    Логин: {i1["login"]}
+TypeError: list indices must be integers or slices, not str
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 588, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685301273, "text": "/aprofile VictorS", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-9' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=KeyError('login')>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\main.py", line 366, in _aprofile
+    Логин: {i1["login"]}
+KeyError: 'login'
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 589, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685301295, "text": "/aprofile VictorS", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-6' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=KeyError('login')>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\main.py", line 367, in _aprofile
+    Логин: {i1["login"]}
+KeyError: 'login'
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 590, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685301355, "text": "/aprofile VictorS", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-6' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=KeyError('login')>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\main.py", line 367, in _aprofile
+    Логин: {i1["login"]}
+KeyError: 'login'
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 591, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685301376, "text": "/aprofile VictorS", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-7' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=KeyError('login')>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\main.py", line 368, in _aprofile
+    Логин: {i1["login"]}
+KeyError: 'login'
 WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
