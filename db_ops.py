@@ -63,6 +63,7 @@ def execute_read_query(conn, query):
     try:
         cursor.execute(query)
         result = cursor.fetchall()
+        conn.commit()
         return result
     except Error as e:
         print(query)

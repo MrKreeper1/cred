@@ -8,6 +8,7 @@ import json
 import logging
 import atexit
 from sql_con import *
+import time
 #
 PATH = ""
 
@@ -29,6 +30,8 @@ def get_allowed_commands(priv):
         com += ["reg", "login", "unlogin", "help", "start", "profile", "request", "my_credits"]
     if priv >= 2:
         com += ["alogin", "aprofile", "userlist", "execcom"]
+    elif priv >= 3:
+        com += ["stop"]
     return com
 
 def user(el):
@@ -367,6 +370,7 @@ async def _aprofile(message):
     savelogin()
 
 async def _execcom(message):
+    global conn
     COMNAME = "aprofile"
     logging.info(message)
     set_default_login(message.chat.id)
@@ -374,7 +378,23 @@ async def _execcom(message):
         await message.answer("Вы еще не вошли в систему!")
     elif can_call(COMNAME, message.chat.id):
         query = message.get_args()
-        await message.answer(str(execute_read_query(conn, query)))
+        res = str(execute_read_query(conn, query))
+        ALL.USERS = SELECT_USERS(conn)
+        ALL.CREDITS = SELECT_CREDITS(conn)
+        await message.answer(res)
+
+async def _stop(message):
+    global conn
+    COMNAME = "aprofile"
+    logging.info(message)
+    set_default_login(message.chat.id)
+    if ALL.LOGIN[message.chat.id] == "default":
+        await message.answer("Вы еще не вошли в систему!")
+    elif can_call(COMNAME, message.chat.id):
+        await message.answer("Выключение...")
+        await bot.delete_message(message.chat.id, message.message_id)
+        time.sleep(5)
+        raise KeyboardInterrupt
 
 COMLIST = {
     "start": _start,
@@ -388,7 +408,8 @@ COMLIST = {
     "my_credits": _my_credits,
     "alogin": _alogin,
     "aprofile": _aprofile,
-    "execcom": _execcom
+    "execcom": _execcom,
+    "stop": _stop
 }
 
 async def main():
