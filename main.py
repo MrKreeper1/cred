@@ -371,7 +371,7 @@ async def _aprofile(message):
 
 async def _execcom(message):
     global conn
-    COMNAME = "aprofile"
+    COMNAME = "execcom"
     logging.info(message)
     set_default_login(message.chat.id)
     if ALL.LOGIN[message.chat.id] == "default":
@@ -382,10 +382,13 @@ async def _execcom(message):
         ALL.USERS = SELECT_USERS(conn)
         ALL.CREDITS = SELECT_CREDITS(conn)
         await message.answer(res)
+    else:
+        await message.answer("Недостаточно прав!")
+    savelogin()
 
 async def _stop(message):
     global conn
-    COMNAME = "aprofile"
+    COMNAME = "stop"
     logging.info(message)
     set_default_login(message.chat.id)
     if ALL.LOGIN[message.chat.id] == "default":
@@ -395,9 +398,11 @@ async def _stop(message):
         await bot.delete_message(message.chat.id, message.message_id)
         time.sleep(5)
         raise KeyboardInterrupt
+    else:
+        await message.answer("Недостаточно прав!")
 
 async def _msgall(message):
-    COMNAME = "aprofile"
+    COMNAME = "msgall"
     logging.info(message)
     set_default_login(message.chat.id)
     if ALL.LOGIN[message.chat.id] == "default":
@@ -408,6 +413,8 @@ async def _msgall(message):
             await bot.delete_message(message.chat.id, message.message_id)
             for user in ALL.LOGIN:
                 await bot.send_message(user, "*Сообщение!*\n" + text, parse_mode="Markdown")
+    else:
+        await message.answer("Недостаточно прав!")
 
 COMLIST = {
     "start": _start,
