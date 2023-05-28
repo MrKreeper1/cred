@@ -29,7 +29,7 @@ def get_allowed_commands(priv):
     if priv >= 1:
         com += ["reg", "login", "unlogin", "help", "start", "profile", "request", "my_credits"]
     if priv >= 2:
-        com += ["alogin", "aprofile", "userlist", "execcom", "msgall"]
+        com += ["alogin", "aprofile", "userlist", "execcom", "msgall", "acredits"]
     elif priv >= 3:
         com += ["stop"]
     return com
@@ -416,6 +416,34 @@ async def _msgall(message):
     else:
         await message.answer("Недостаточно прав!")
 
+async def _acredits(message):
+    COMNAME = "acredits"
+    logging.info(message)
+    set_default_login(message.chat.id)
+
+    if ALL.LOGIN[message.chat.id] == "default":
+        await message.answer("Вы еще не вошли в систему!")
+    elif can_call(COMNAME, message.chat.id):
+        user_ = message.get_args()
+        print(user_)
+        print(ALL.CREDITS)
+        if len(user_) > 0:
+            res, count = "", 0
+            for credit in ALL.CREDITS:
+                credit1 = cred(credit)
+                if credit1["user"] == user_ and credit1["status"] == 1:
+                    count += 1
+                    if credit1["start_date"] != None:
+                        res += f"{count}. Взят на {credit1['num']} пятерок {credit1['start_date']}.\n"
+                    else:
+                        res += f"{count}. Взят на {credit1['num']} пятерок.\n"
+            if res == "":
+                res = "Кредитов нет!"
+            await message.answer(res)
+    else:
+        await message.answer("Недостаточно прав!")
+    savelogin()
+
 COMLIST = {
     "start": _start,
     "reg": _reg,
@@ -430,7 +458,8 @@ COMLIST = {
     "aprofile": _aprofile,
     "execcom": _execcom,
     "stop": _stop,
-    "msgall": _msgall
+    "msgall": _msgall,
+    "acredits": _acredits
 }
 
 async def main():
