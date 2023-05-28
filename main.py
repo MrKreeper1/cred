@@ -29,7 +29,7 @@ def get_allowed_commands(priv):
     if priv >= 1:
         com += ["reg", "login", "unlogin", "help", "start", "profile", "request", "my_credits"]
     if priv >= 2:
-        com += ["alogin", "aprofile", "userlist", "execcom"]
+        com += ["alogin", "aprofile", "userlist", "execcom", "msgall"]
     elif priv >= 3:
         com += ["stop"]
     return com
@@ -396,6 +396,19 @@ async def _stop(message):
         time.sleep(5)
         raise KeyboardInterrupt
 
+async def _msgall(message):
+    COMNAME = "aprofile"
+    logging.info(message)
+    set_default_login(message.chat.id)
+    if ALL.LOGIN[message.chat.id] == "default":
+        await message.answer("Вы еще не вошли в систему!")
+    elif can_call(COMNAME, message.chat.id):
+        text = message.get_args()
+        if text:
+            await bot.delete_message(message.chat.id, message.message_id)
+            for user in ALL.LOGIN:
+                await bot.send_message(user, "*Сообщение!*\n" + text, parse_mode="Markdown")
+
 COMLIST = {
     "start": _start,
     "reg": _reg,
@@ -409,7 +422,8 @@ COMLIST = {
     "alogin": _alogin,
     "aprofile": _aprofile,
     "execcom": _execcom,
-    "stop": _stop
+    "stop": _stop,
+    "msgall": _msgall
 }
 
 async def main():
