@@ -32,6 +32,7 @@ HELP2 = """/alogin {логин} - войти в систему с указанн
 /acredits {логин} - просмотреть все кредиты пользователя с указанным логином
 /userlist - получить список всех пользователей
 /credlist - получить список всех кредитов
+/acredlist - получить список всех активных кредитов
 /msgall {сообщение} - отправить сообщение всем залогиненным на данный момент пользователям
 /execcom {запрос} - выполнить запрос к БД
 """
@@ -431,8 +432,8 @@ async def _credlist(message):
         await message.answer("Вы еще не вошли в систему!")
     elif can_call(COMNAME, message.chat.id):
         res = "Список кредитов в системе:\n"
-        for user in ALL.CREDITS:
-            res += str(user) + "\n"
+        for credit in ALL.CREDITS:
+            res += str(credit) + "\n"
         await message.answer(res)
 
 async def _reqlist(message):
@@ -492,6 +493,21 @@ async def _repaycred(message):
             ALL.CREDITS = SELECT_CREDITS(conn)
         except:
             await message.answer("Пожалуйста, введите уникальный номер кредита через пробел после команды")
+
+async def _acredlist(message):
+    COMNAME = "acredlist"
+    logging.info(message)
+    set_default_login(message.chat.id)
+
+    if ALL.LOGIN[message.chat.id] == "default":
+        await message.answer("Вы еще не вошли в систему!")
+    elif can_call(COMNAME, message.chat.id):
+        res = "Список кредитов в системе:\n"
+        for credit in ALL.CREDITS:
+            if cred(credit)["status"]:
+                res += str(credit) + "\n"
+        await message.answer(res)
+
 COMLIST = {
     "start": _start,
     "reg": _reg,
@@ -510,7 +526,8 @@ COMLIST = {
     "acredits": _acredits,
     "credlist": _credlist,
     "reqlist": _reqlist,
-    "repaycred": _repaycred
+    "repaycred": _repaycred,
+    "acredlist": _acredlist
 }
 
 async def main():
