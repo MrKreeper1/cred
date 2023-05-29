@@ -527,6 +527,8 @@ async def main():
             continue
         if r[0] == "exit":
             break
+        if not os.isdir("dbcopy"):
+            os.mkdir("dbcopy")
         if r[0] == "save":
             db_copy(PATH)
             continue
@@ -536,6 +538,9 @@ async def main():
             db_load(PATH, r[1], r[2])
     
     if conf.save:
+        if not os.isfile("save"):
+            with open("save", "w") as f:
+                f.write("{}")
         with open("save", "r") as f:
             ALL.LOGIN = json.load(f)
         login1 = {}

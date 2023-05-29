@@ -1,3 +1,11 @@
+import os
+if not os.isfile("config"):
+    data = """close_conn=1
+path=main.db
+save=1"""
+    with open("config", "w") as f:
+        f.write(data)
+
 close_conn = True
 path = ""
 save = False
