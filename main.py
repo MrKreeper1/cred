@@ -77,6 +77,7 @@ def db_copy(path):
             mxnum = int(el[1:el.find(".")]) + 1
     with open(path, "rb") as f, open(f"dbcopy/c{mxnum}.db", "wb") as g:
         g.write(f.read())
+    print("DB saved to", f"dbcopy/c{mxnum}.db")
 
 def db_load(path, num, rem):
     with open(path, "rb") as f:
@@ -458,11 +459,20 @@ async def main():
     print(conf.res)
     PATH = conf.path
 
-    r = input("Try to load db from save?(y/n): ") == "y"
-    if r:
-        num = int(input("DB num: "))
-        rem = input("Remove db save after copying?(y/n): ") == "y"
-        db_load(PATH, num, rem)
+    print("Save-load console:")
+    while True:
+        r = input(">>> ").split()
+        if r == []:
+            continue
+        if r[0] == "exit":
+            break
+        if r[0] == "save":
+            db_copy(PATH)
+            continue
+        if len(r) < 3:
+            continue
+        if r[0] == "load":
+            db_load(PATH, r[1], r[2])
     
     if conf.save:
         with open("save", "r") as f:
