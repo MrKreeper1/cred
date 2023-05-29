@@ -118,7 +118,7 @@ def can_call(com, chat_id):
     for el in ALL.USERS:
         el1 = user(el)
         if el1["login"] == login:
-            lev = el1["privilegy"]
+            lev = el1["privilege"]
             break
     return com in get_allowed_commands(lev)
 
@@ -132,12 +132,12 @@ def atex():
     logging.shutdown()
 
 async def _start(message):
-    COMNAME = "start"
+    COMNAME = "help"
     logging.info(message)
     set_default_login(message.chat.id)
 
     if can_call(COMNAME, message.chat.id):
-        await message.answer('Привет! Добро пожаловать в НикольКредитБанк!')
+        await message.answer(gen_help(get_user(message.chat.id)["privilege"]))
     else:
         await message.answer("Недостаточно прав!")
 
@@ -220,7 +220,7 @@ async def _help(message):
     set_default_login(message.chat.id)
 
     if can_call(COMNAME, message.chat.id):
-        await message.answer(gen_help(get_user(message.chat.id)["privilegy"]))
+        await message.answer(gen_help(get_user(message.chat.id)["privilege"]))
     else:
         await message.answer("Недостаточно прав!")
 
@@ -359,7 +359,7 @@ async def _execcom(message):
             INIT(conn)
             await message.answer("DB initialization...")
             return 0
-        elif query == "DROP_ALL" and get_user(message.chat.id)["privilegy"] >= 3:
+        elif query == "DROP_ALL" and get_user(message.chat.id)["privilege"] >= 3:
             db_copy(PATH)
             DROP_ALL(conn)
             await message.answer("DB dropping...")
@@ -374,6 +374,23 @@ async def _execcom(message):
         ALL.CREDITS = SELECT_CREDITS(conn)
         ALL.REQUESTS = SELECT_REQUESTS(conn)
         await message.answer(res)
+
+async def _execpyc(message):
+    global conn
+    COMNAME = "execcom"
+    logging.info(message)
+    set_default_login(message.chat.id)
+    if ALL.LOGIN[message.chat.id] == "default":
+        await message.answer("Вы еще не вошли в систему!")
+    elif can_call(COMNAME, message.chat.id):
+        query = message.get_args()
+        if query == "":
+            return 0
+        await bot.delete_message(message.chat.id, message.message_id)
+        if query[0] == "!" and query != "!":
+            exec(query[1:])
+        else:
+            await message.answer(str(eval(query)))
 
 async def _stop(message):
     global conn
@@ -527,7 +544,8 @@ COMLIST = {
     "credlist": _credlist,
     "reqlist": _reqlist,
     "repaycred": _repaycred,
-    "acredlist": _acredlist
+    "acredlist": _acredlist,
+    "execpyc": _execpyc
 }
 
 async def main():

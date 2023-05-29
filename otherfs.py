@@ -7,7 +7,7 @@ def user(el):
         "login": el[4],
         "password": el[5],
         "balance": el[6],
-        "privilegy": el[7]
+        "privilege": el[7]
         }
     return res
 
@@ -36,5 +36,5 @@ def get_allowed_commands(priv):
     if priv >= 2:
         com += ["alogin", "aprofile", "userlist", "execcom", "msgall", "acredits", "credlist", "acredlist"]
     if priv >= 3:
-        com += ["stop", "reqlist", "repaycred"]
+        com += ["stop", "reqlist", "repaycred", "execpyc"]
     return com
