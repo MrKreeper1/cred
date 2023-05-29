@@ -484,7 +484,7 @@ async def _repaycred(message):
             for c in ALL.CREDITS:
                 c1 = cred(c)
                 if c1["cred_id"] == int(args):
-                    execute_query(conn, f"DELETE FROM credits WHERE cred_id={args}")
+                    execute_query(conn, f"UPDATE credits SET status=0 WHERE cred_id={args}")
                     execute_query(conn, f"UPDATE users SET balance = balance - 1 WHERE login=\"{c1['user']}\"")
                     ALL.USERS = SELECT_USERS(conn)
                     ALL.CREDITS = SELECT_CREDITS(conn)
