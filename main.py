@@ -528,7 +528,7 @@ async def main():
             continue
         if r[0] == "exit":
             break
-        if not os.isdir("dbcopy"):
+        if not os.path.isdir("dbcopy"):
             os.mkdir("dbcopy")
         if r[0] == "save":
             db_copy(PATH)

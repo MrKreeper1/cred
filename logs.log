@@ -2465,3 +2465,16 @@ INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   c
 INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
 INFO:aiogram.dispatcher.dispatcher:Start polling.
 WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 1167, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685392775, "text": "/help", "entities": [{"type": "bot_command", "offset": 0, "length": 5}]}
+INFO:root:{"message_id": 1169, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685393543, "text": "/profile", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 1171, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685393554, "text": "/userlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
