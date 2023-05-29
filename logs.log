@@ -2261,3 +2261,163 @@ INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id
 INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
 INFO:root:{"message_id": 1071, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685385435, "text": "/credlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
 WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 1073, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685387697, "text": "/repaycred 20", "entities": [{"type": "bot_command", "offset": 0, "length": 10}]}
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=20
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="svph"
+INFO:root:{"message_id": 1075, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685387703, "text": "/repaycred 8", "entities": [{"type": "bot_command", "offset": 0, "length": 10}]}
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=8
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="svph"
+INFO:root:{"message_id": 1077, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685387706, "text": "/repaycred 9", "entities": [{"type": "bot_command", "offset": 0, "length": 10}]}
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=9
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="svph"
+INFO:root:{"message_id": 1079, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685387712, "text": "/repaycred 10", "entities": [{"type": "bot_command", "offset": 0, "length": 10}]}
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=10
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="svph"
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 1081, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685387852, "text": "/repaycred 11", "entities": [{"type": "bot_command", "offset": 0, "length": 10}]}
+INFO:root:The error 'no such column: 11' occurred in 'UPDATE credits SET status=0 WHERE cred_id=[11]'
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="svph"
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully -UPDATE users SET balance = 2 WHERE login="svph"
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 1084, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685387871, "text": "/credlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+INFO:root:{"message_id": 1086, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685387878, "text": "/repaycred 1, 2", "entities": [{"type": "bot_command", "offset": 0, "length": 10}]}
+INFO:root:The error 'no such column: 1, 2' occurred in 'UPDATE credits SET status=0 WHERE cred_id=[1, 2]'
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:The error 'no such column: 1, 2' occurred in 'UPDATE credits SET status=0 WHERE cred_id=[1, 2]'
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:{"message_id": 1089, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685387881, "text": "/credlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully -UPDATE users SET balance = 9 WHERE login="admin"
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 1091, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685387919, "text": "/credlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+INFO:root:{"message_id": 1093, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685387927, "text": "/repaycred 1, 2", "entities": [{"type": "bot_command", "offset": 0, "length": 10}]}
+INFO:root:The error 'no such column: 1, 2' occurred in 'UPDATE credits SET status=0 WHERE cred_id=[1, 2]'
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:The error 'no such column: 1, 2' occurred in 'UPDATE credits SET status=0 WHERE cred_id=[1, 2]'
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:{"message_id": 1096, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685387931, "text": "/credlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully -UPDATE users SET balance = 9 WHERE login="admin"
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 1098, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685387995, "text": "/repaycred 1", "entities": [{"type": "bot_command", "offset": 0, "length": 10}]}
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=0
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:{"message_id": 1100, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685387997, "text": "/credlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully -UPDATE users SET balance = 9 WHERE login="admin"
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 1102, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388021, "text": "/credlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+INFO:root:{"message_id": 1104, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388027, "text": "/repaycred 1", "entities": [{"type": "bot_command", "offset": 0, "length": 10}]}
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=1
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:{"message_id": 1106, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388029, "text": "/credlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+INFO:root:{"message_id": 1108, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388045, "text": "/repaycred 2, 3, 6, 11, 12, 13, 18, 19, 21, 22", "entities": [{"type": "bot_command", "offset": 0, "length": 10}]}
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=1
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=2
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=3
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=4
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="svph"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=5
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="svph"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=6
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=7
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=8
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=9
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=10
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:{"message_id": 1119, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388050, "text": "/credlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+INFO:root:{"message_id": 1121, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388090, "text": "/profile", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 1123, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388093, "text": "/credlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+INFO:root:{"message_id": 1125, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388103, "text": "/aprofile svph", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+INFO:root:{"message_id": 1127, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388108, "text": "/acredits svph", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully -UPDATE users SET balance = 5 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE users SET balance = 2 WHERE login="svph"
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 1129, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388157, "text": "/acredits svph", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+INFO:root:{"message_id": 1131, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388168, "text": "/acredits admin", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+INFO:root:{"message_id": 1133, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388174, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 1135, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388209, "text": "/repaycred 2, 3, 6, 11, 12, 13, 18, 19, 21, 22", "entities": [{"type": "bot_command", "offset": 0, "length": 10}]}
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=4
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="svph"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=5
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="svph"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=6
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=7
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=8
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=9
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=10
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:{"message_id": 1143, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388215, "text": "/credlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully -UPDATE users SET balance = 5 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE users SET balance = 2 WHERE login="svph"
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 1145, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388257, "text": "/credlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+INFO:root:{"message_id": 1147, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388259, "text": "/repaycred 2, 3, 6, 11, 12, 13, 18, 19, 21, 22", "entities": [{"type": "bot_command", "offset": 0, "length": 10}]}
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=11
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="svph"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=12
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="svph"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=13
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=18
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=19
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=21
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:Query executed successfully -UPDATE credits SET status=0 WHERE cred_id=22
+INFO:root:Query executed successfully -UPDATE users SET balance = balance - 1 WHERE login="admin"
+INFO:root:{"message_id": 1155, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388263, "text": "/credlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+INFO:root:{"message_id": 1157, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388280, "text": "/execcom SELECT * FROM credits WHERE status=1", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 1159, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388286, "text": "/execcom SELECT * FROM credits WHERE status=0", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.

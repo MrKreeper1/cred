@@ -36,7 +36,7 @@ HELP2 = """/alogin {логин} - войти в систему с указанн
 """
 HELP3 = """/stop - остановить сервер
 /reqlist - просмотреть и одобрить/отклонить первую заявку на кредит
-/repaycred {номер_кредита} - погасить кредит с указанным уникальным номером
+/repaycred {номера_кредитов_через_запятую} - погасить кредиты с указанными уникальными номерами
 """
 
 def get_user(chat_id):
@@ -409,15 +409,14 @@ async def _acredits(message):
     elif can_call(COMNAME, message.chat.id):
         user_ = message.get_args()
         if len(user_) > 0:
-            res, count = "", 0
+            res = ""
             for credit in ALL.CREDITS:
                 credit1 = cred(credit)
                 if credit1["user"] == user_ and credit1["status"] == 1:
-                    count += 1
                     if credit1["start_date"] != None:
-                        res += f"{count}. Взят на {credit1['num']} пятерок {credit1['start_date']}.\n"
+                        res += f"{credit1['cred_id']}. Взят на {credit1['num']} пятерок {credit1['start_date']}.\n"
                     else:
-                        res += f"{count}. Взят на {credit1['num']} пятерок.\n"
+                        res += f"{credit1['cred_id']}. Взят на {credit1['num']} пятерок.\n"
             if res == "":
                 res = "Кредитов нет!"
             await message.answer(res)
@@ -479,20 +478,18 @@ async def _repaycred(message):
     if ALL.LOGIN[message.chat.id] == "default":
         await message.answer("Вы еще не вошли в систему!")
     elif can_call(COMNAME, message.chat.id):
-        args = message.get_args()
-        if args.isdigit():
+        args = message.get_args().replace(" ", "").split(",")
+        try:
+            args = list(map(int, args))
             for c in ALL.CREDITS:
                 c1 = cred(c)
-                if c1["cred_id"] == int(args):
-                    execute_query(conn, f"UPDATE credits SET status=0 WHERE cred_id={args}")
+                if c1["cred_id"] in args and c1["status"]:
+                    execute_query(conn, f"UPDATE credits SET status=0 WHERE cred_id={c1['cred_id']}")
                     execute_query(conn, f"UPDATE users SET balance = balance - 1 WHERE login=\"{c1['user']}\"")
-                    ALL.USERS = SELECT_USERS(conn)
-                    ALL.CREDITS = SELECT_CREDITS(conn)
-                    await message.answer("Кредит погашен!")
-                    break
-            else:
-                await message.answer("Такого кредита не существует!")
-        else:
+                    await message.answer(f"Кредит {c1['cred_id']} погашен!")
+            ALL.USERS = SELECT_USERS(conn)
+            ALL.CREDITS = SELECT_CREDITS(conn)
+        except:
             await message.answer("Пожалуйста, введите уникальный номер кредита через пробел после команды")
 COMLIST = {
     "start": _start,
