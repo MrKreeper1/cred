@@ -275,7 +275,7 @@ async def _request(message):
     elif can_call(COMNAME, message.chat.id):
         #пока без одобрения
         num = message.get_args()
-        if num:
+        if num and num > 0:
             execute_query(conn, f"INSERT INTO requests(user, num) VALUES(\"{ALL.LOGIN[message.chat.id]}\", {num})")
             ALL.REQUESTS = SELECT_REQUESTS(conn)
             await message.answer("Кредит запрошен...")
