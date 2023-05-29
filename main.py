@@ -35,6 +35,8 @@ HELP2 = """/alogin {логин} - войти в систему с указанн
 /execcom {запрос} - выполнить запрос к БД
 """
 HELP3 = """/stop - остановить сервер
+/reqlist - просмотреть и одобрить/отклонить первую заявку на кредит
+/repaycred {номер_кредита} - погасить кредит с указанным уникальным номером
 """
 
 def get_user(chat_id):
@@ -275,7 +277,7 @@ async def _request(message):
     elif can_call(COMNAME, message.chat.id):
         #пока без одобрения
         num = message.get_args()
-        if num and num > 0:
+        if num and num.isdigit() and int(num) > 0:
             execute_query(conn, f"INSERT INTO requests(user, num) VALUES(\"{ALL.LOGIN[message.chat.id]}\", {num})")
             ALL.REQUESTS = SELECT_REQUESTS(conn)
             await message.answer("Кредит запрошен...")
@@ -292,15 +294,14 @@ async def _my_credits(message):
     if ALL.LOGIN[message.chat.id] == "default":
         await message.answer("Вы еще не вошли в систему!")
     elif can_call(COMNAME, message.chat.id):
-        res, count = "", 0
+        res = ""
         for credit in ALL.CREDITS:
             credit1 = cred(credit)
             if credit1["user"] == ALL.LOGIN[message.chat.id] and credit1["status"] == 1:
-                count += 1
                 if credit1["start_date"] != None:
-                    res += f"{count}. Взят на {credit1['num']} пятерок {credit1['start_date']}.\n"
+                    res += f"{credit1['cred_id']}. Взят на {credit1['num']} пятерок {credit1['start_date']}.\n"
                 else:
-                    res += f"{count}. Взят на {credit1['num']} пятерок.\n"
+                    res += f"{credit1['cred_id']}. Взят на {credit1['num']} пятерок.\n"
         if res == "":
             res = "Кредитов нет!"
         await message.answer(res)
@@ -450,14 +451,15 @@ async def _reqlist(message):
         inline_kb_full.add(InlineKeyboardButton('Отклонить', callback_data='reqdec'))
         await message.reply(f"Кредит запрошен {c['user']} на {c['num']} пятерок", reply_markup=inline_kb_full)
 
-@dp.callback_query_handler(lambda c: c.data in ["reqac", "reqdec"])
 async def button_callback(callback_query: types.CallbackQuery):
     print(callback_query)
     if callback_query.data == "reqac":
         c = req(ALL.REQUESTS[0])
         execute_query(conn, f"INSERT INTO credits (user, num) VALUES (\"{c['user']}\", {c['num']})")
+        execute_query(conn, f"UPDATE users SET balance = balance + 1 WHERE login = \"{c['user']}\"")
         execute_query(conn, f"DELETE FROM requests WHERE req_id={c['req_id']}")
         ALL.CREDITS = SELECT_CREDITS(conn)
+        ALL.USERS = SELECT_USERS(conn)
         await bot.answer_callback_query(callback_query.id)
         await bot.send_message(callback_query.from_user.id, 'Кредит одобрен!')
         await bot.delete_message(callback_query.from_user.id, callback_query.message.message_id)
@@ -469,6 +471,29 @@ async def button_callback(callback_query: types.CallbackQuery):
         await bot.delete_message(callback_query.from_user.id, callback_query.message.message_id)
     ALL.REQUESTS = SELECT_REQUESTS(conn)
 
+async def _repaycred(message):
+    COMNAME = "repaycred"
+    logging.info(message)
+    set_default_login(message.chat.id)
+
+    if ALL.LOGIN[message.chat.id] == "default":
+        await message.answer("Вы еще не вошли в систему!")
+    elif can_call(COMNAME, message.chat.id):
+        args = message.get_args()
+        if args.isdigit():
+            for c in ALL.CREDITS:
+                c1 = cred(c)
+                if c1["cred_id"] == int(args):
+                    execute_query(conn, f"DELETE FROM credits WHERE cred_id={args}")
+                    execute_query(conn, f"UPDATE users SET balance = balance - 1 WHERE login=\"{c1['user']}\"")
+                    ALL.USERS = SELECT_USERS(conn)
+                    ALL.CREDITS = SELECT_CREDITS(conn)
+                    await message.answer("Кредит погашен!")
+                    break
+            else:
+                await message.answer("Такого кредита не существует!")
+        else:
+            await message.answer("Пожалуйста, введите уникальный номер кредита через пробел после команды")
 COMLIST = {
     "start": _start,
     "reg": _reg,
@@ -486,7 +511,8 @@ COMLIST = {
     "msgall": _msgall,
     "acredits": _acredits,
     "credlist": _credlist,
-    "reqlist": _reqlist
+    "reqlist": _reqlist,
+    "repaycred": _repaycred
 }
 
 async def main():
@@ -535,6 +561,7 @@ async def main():
 
     for comname in COMLIST:
         dp.register_message_handler(COMLIST[comname], commands=[comname])
+    dp.register_callback_query_handler(button_callback, lambda c: c.data in ["reqac", "reqdec"])
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
