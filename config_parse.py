@@ -1,5 +1,5 @@
-import os
-if not os.isfile("config"):
+import os.path
+if not os.path.exists("config"):
     data = """close_conn=1
 path=main.db
 save=1"""

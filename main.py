@@ -11,6 +11,7 @@ from sql_con import *
 import time
 from otherfs import *
 import os
+import os.path
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 #
 PATH = ""
@@ -538,7 +539,7 @@ async def main():
             db_load(PATH, r[1], r[2])
     
     if conf.save:
-        if not os.isfile("save"):
+        if not os.path.exists("save"):
             with open("save", "w") as f:
                 f.write("{}")
         with open("save", "r") as f:
