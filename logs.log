@@ -2421,3 +2421,41 @@ INFO:root:{"message_id": 1155, "from": {"id": 1647252544, "is_bot": false, "firs
 INFO:root:{"message_id": 1157, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388280, "text": "/execcom SELECT * FROM credits WHERE status=1", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
 INFO:root:{"message_id": 1159, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685388286, "text": "/execcom SELECT * FROM credits WHERE status=0", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
 WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:aiogram.dispatcher.dispatcher:Cause exception while getting updates.
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\bot\api.py", line 139, in make_request
+    async with session.post(url, data=req, **kwargs) as response:
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiohttp\client.py", line 1138, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiohttp\client.py", line 559, in _request
+    await resp.start(conn)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiohttp\client_reqrep.py", line 898, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiohttp\streams.py", line 616, in read
+    await self._waiter
+aiohttp.client_exceptions.ClientOSError: [WinError 1236] Подключение к сети было разорвано локальной системой
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\bot\bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\bot\base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\bot\api.py", line 142, in make_request
+    raise exceptions.NetworkError(f"aiohttp client throws an error: {e.__class__.__name__}: {e}")
+aiogram.utils.exceptions.NetworkError: Aiohttp client throws an error: ClientOSError: [WinError 1236] Подключение к сети было разорвано локальной системой
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 1161, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685389790, "text": "/userlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+INFO:root:{"message_id": 1163, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685389895, "text": "/acredits svph", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
+INFO:root:{"message_id": 1165, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685389901, "text": "/acredits grgjrggr", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
