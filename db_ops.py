@@ -1,6 +1,7 @@
 import sqlite3
 from sqlite3 import Error
 import logging
+from otherfs import *
 
 CREATE_DATABASE_QUERY1 = """
 CREATE TABLE IF NOT EXISTS users (
@@ -70,10 +71,12 @@ def execute_read_query(conn, query):
         print(f"The error '{e}' occurred")
 
 def INIT(conn):
+    print("***********\nDB initialization!\n***********")
     execute_query(conn, CREATE_DATABASE_QUERY1)
     execute_query(conn, CREATE_DATABASE_QUERY2)
-    
+
 def DROP_ALL(conn):
+    print("***********\nDB dropping!\n***********")
     execute_query(conn, DROP_DATABASE_QUERY1)
     execute_query(conn, DROP_DATABASE_QUERY2)
 
@@ -93,3 +96,16 @@ def register(conn, _name, _surname, _class, _login, _password):
     print(query)
     execute_query(conn, query)
 
+def check_db(conn):
+    print("Checking DB...")
+    users = SELECT_USERS(conn)
+    creds = SELECT_CREDITS(conn)
+    for u in users:
+        num = 0
+        u1 = user(u)
+        for c in creds:
+            if cred(c)["user"] == u1["login"] and cred(c)["status"]:
+                num += 1
+        if u1["balance"] != num:
+            print("Updating balance for", u1["login"])
+            execute_query(conn, f"UPDATE users SET balance = {num} WHERE login=\"{u1['login']}\"")

@@ -9,6 +9,8 @@ import logging
 import atexit
 from sql_con import *
 import time
+from otherfs import *
+import os
 #
 PATH = ""
 
@@ -23,41 +25,16 @@ HELP = """Добро пожаловать в НикольБанк.
  /my_credits - получить список всех своих кредитов
  /help - помощь
 """
-
-def get_allowed_commands(priv):
-    com = []
-    if priv >= 1:
-        com += ["reg", "login", "unlogin", "help", "start", "profile", "request", "my_credits"]
-    if priv >= 2:
-        com += ["alogin", "aprofile", "userlist", "execcom", "msgall", "acredits"]
-    elif priv >= 3:
-        com += ["stop"]
-    return com
-
-def user(el):
-    res = {
-        "id": el[0],
-        "name": el[1],
-        "surname": el[2],
-        "class": el[3],
-        "login": el[4],
-        "password": el[5],
-        "balance": el[6],
-        "privilegy": el[7]
-        }
-    return res
-
-def cred(el):
-    res = {
-        "cred_id": el[0],
-        "user": el[1],
-        "num": el[2],
-        "start_date": el[3],
-        "finish_date": el[4],
-        "desc": el[5],
-        "status": el[6]
-    }
-    return res
+HELP2 = """/alogin {логин} - войти в систему с указанным логином 
+/aprofile {логин} - просмотреть профиль пользователя с указанным логином
+/acredits {логин} - просмотреть все кредиты пользователя с указанным логином
+/userlist - получить список всех пользователей
+/credlist - получить список всех кредитов
+/msgall {сообщение} - отправить сообщение всем залогиненным на данный момент пользователям
+/execcom {запрос} - выполнить запрос к БД
+"""
+HELP3 = """/stop - остановить сервер
+"""
 
 def get_user(chat_id):
     login = ALL.LOGIN[chat_id]
@@ -70,7 +47,6 @@ def get_profile(login):
         if el1["login"] == login:
             res = el1
             break
-    print(res)
     return res
 
 def savelogin():
@@ -80,12 +56,9 @@ def savelogin():
         with open("save", "w") as f:
             json.dump(ALL.LOGIN, f)
 
-
-
-conn = 0
-iscon = False
 #энд
 #Важные переменные декларэйшн
+conn = 0
 bot = Bot('5860281367:AAGmZCTEvrJRXPLOV8bXGtf4JMlwNKir_YU')
 dp = Dispatcher(bot)
 logging.basicConfig(level=logging.INFO, filename="logs.log",filemode="a", encoding="utf-8")
@@ -95,6 +68,38 @@ class ALL:
         LOGIN = {}
 
 #Важные переменные деклерейшн энд
+
+def db_copy(path):
+    copies = os.listdir("dbcopy")
+    mxnum = 1
+    for el in copies:
+        if int(el[1:el.find(".")]) >= mxnum:
+            mxnum = int(el[1:el.find(".")]) + 1
+    with open(path, "rb") as f, open(f"dbcopy/c{mxnum}.db", "wb") as g:
+        g.write(f.read())
+
+def db_load(path, num, rem):
+    with open(path, "rb") as f:
+        data = f.read()
+    try:
+        with open(path, "wb") as f, open(f"dbcopy/c{num}.db", "rb") as g:
+            f.write(g.read())
+    except:
+        with open(path, "wb") as f:
+            f.write(data)
+    if rem:
+        os.remove(f"dbcopy/c{num}.db")
+
+def gen_help(lvl):
+    global HELP, HELP2, HELP3
+    res = ""
+    if lvl >= 1:
+        res += HELP
+    if lvl >= 2:
+        res += HELP2
+    if lvl >= 3:
+        res += HELP3
+    return res
 
 def set_default_login(chat_id):
     if chat_id not in ALL.LOGIN.keys():
@@ -133,7 +138,6 @@ async def _reg(message):
     COMNAME = "reg"
     logging.info(message)
     set_default_login(message.chat.id)
-    print(message)
     if can_call(COMNAME, message.chat.id):
         args = message.get_args().split()
         if len(args) != 5:
@@ -143,7 +147,6 @@ async def _reg(message):
         else:
             _name, _surname, _class, _login, _password = args
             ALL.USERS = SELECT_USERS(conn)
-            print(ALL.USERS, _login)
             for el in ALL.USERS:
                 el1 = user(el)
                 if el1["login"] == _login:
@@ -185,7 +188,6 @@ async def _login(message):
             ALL.LOGIN[message.chat.id] = _login
         else:
             await message.answer("Пароль неверный!")
-        print(ALL.LOGIN)
     else:
         await message.answer("Недостаточно прав!")
 
@@ -197,7 +199,6 @@ async def _unlogin(message):
     elif can_call(COMNAME, message.chat.id):
         try:
             ALL.LOGIN.pop(message.chat.id)
-            print(ALL.LOGIN)
             set_default_login(message.chat.id)
             await message.answer("Вы успешно вышли из аккаунта!")
         except:
@@ -212,7 +213,7 @@ async def _help(message):
     set_default_login(message.chat.id)
 
     if can_call(COMNAME, message.chat.id):
-        await message.answer(HELP)
+        await message.answer(gen_help(get_user(message.chat.id)["privilegy"]))
     else:
         await message.answer("Недостаточно прав!")
 
@@ -247,7 +248,6 @@ async def _profile(message):
             await message.answer("Вы не зарегистрировны или не вошли в аккаунт!")
     else:
         await message.answer("Недостаточно прав!")
-    print(ALL.LOGIN)
 
 async def _userlist(message):
     COMNAME = "userlist"
@@ -291,7 +291,6 @@ async def _my_credits(message):
         await message.answer("Вы еще не вошли в систему!")
     elif can_call(COMNAME, message.chat.id):
         res, count = "", 0
-        print(ALL.CREDITS)
         for credit in ALL.CREDITS:
             credit1 = cred(credit)
             if credit1["user"] == ALL.LOGIN[message.chat.id] and credit1["status"] == 1:
@@ -317,7 +316,6 @@ async def _alogin(message):
         user_ = message.get_args()
         if len(user_) > 0:
             ALL.LOGIN[message.chat.id] = user_
-            print(ALL.LOGIN)
             await message.answer("Вход успешен!")
         else:
             await message.answer("Введите логин через пробел!")
@@ -330,7 +328,6 @@ async def _aprofile(message):
         await message.answer("Вы еще не вошли в систему!")
     elif can_call(COMNAME, message.chat.id):
         user_ = message.get_args()
-        print(user_)
         if len(user_) > 0:
             i1 = get_profile(user_)
             msg = f"""Профиль
@@ -353,6 +350,20 @@ async def _execcom(message):
         await message.answer("Вы еще не вошли в систему!")
     elif can_call(COMNAME, message.chat.id):
         query = message.get_args()
+        if query == "INIT":
+            INIT(conn)
+            await message.answer("DB initialization...")
+            return 0
+        elif query == "DROP_ALL" and get_user(message.chat.id)["privilegy"] >= 3:
+            db_copy(PATH)
+            DROP_ALL(conn)
+            await message.answer("DB dropping...")
+            return 0
+        elif query == "RECREATE":
+            db_copy(PATH)
+            RECREATE(conn)
+            await message.answer("DB recreation...")
+            return 0
         res = str(execute_read_query(conn, query))
         ALL.USERS = SELECT_USERS(conn)
         ALL.CREDITS = SELECT_CREDITS(conn)
@@ -393,8 +404,6 @@ async def _acredits(message):
         await message.answer("Вы еще не вошли в систему!")
     elif can_call(COMNAME, message.chat.id):
         user_ = message.get_args()
-        print(user_)
-        print(ALL.CREDITS)
         if len(user_) > 0:
             res, count = "", 0
             for credit in ALL.CREDITS:
@@ -408,6 +417,19 @@ async def _acredits(message):
             if res == "":
                 res = "Кредитов нет!"
             await message.answer(res)
+
+async def _credlist(message):
+    COMNAME = "credlist"
+    logging.info(message)
+    set_default_login(message.chat.id)
+
+    if ALL.LOGIN[message.chat.id] == "default":
+        await message.answer("Вы еще не вошли в систему!")
+    elif can_call(COMNAME, message.chat.id):
+        res = "Список кредитов в системе:\n"
+        for user in ALL.CREDITS:
+            res += str(user) + "\n"
+        await message.answer(res)
 
 COMLIST = {
     "start": _start,
@@ -424,15 +446,24 @@ COMLIST = {
     "execcom": _execcom,
     "stop": _stop,
     "msgall": _msgall,
-    "acredits": _acredits
+    "acredits": _acredits,
+    "credlist": _credlist
 }
 
 async def main():
     global PATH, conn, COMLIST
     
+    print("Config:")
     conf.config_init()
     print(conf.res)
     PATH = conf.path
+
+    r = input("Try to load db from save?(y/n): ") == "y"
+    if r:
+        num = int(input("DB num: "))
+        rem = input("Remove db save after copying?(y/n): ") == "y"
+        db_load(PATH, num, rem)
+    
     if conf.save:
         with open("save", "r") as f:
             ALL.LOGIN = json.load(f)
@@ -441,13 +472,16 @@ async def main():
             login1[int(mid)] = ALL.LOGIN[mid]
         ALL.LOGIN = login1.copy()
 
-
+    print("Login list:")
     print(ALL.LOGIN)
     conn = create_connection(PATH)
     INIT(conn)
+    check_db(conn)
     ALL.USERS = SELECT_USERS(conn)
     ALL.CREDITS = SELECT_CREDITS(conn)
+    print("User list:")
     print(ALL.USERS)
+    print("Credits list:")
     print(ALL.CREDITS)
 
     for comname in COMLIST:
