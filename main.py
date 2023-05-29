@@ -11,6 +11,7 @@ from sql_con import *
 import time
 from otherfs import *
 import os
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 #
 PATH = ""
 
@@ -66,6 +67,7 @@ class ALL:
         USERS = []
         CREDITS = []
         LOGIN = {}
+        REQUESTS = []
 
 #Важные переменные деклерейшн энд
 
@@ -274,10 +276,9 @@ async def _request(message):
         #пока без одобрения
         num = message.get_args()
         if num:
-            execute_query(conn, f"INSERT INTO credits(user, num) VALUES(\"{ALL.LOGIN[message.chat.id]}\", {num})")
-            execute_query(conn, f"UPDATE users SET balance = balance + 1 WHERE login=\"{ALL.LOGIN[message.chat.id]}\"")
-            ALL.CREDITS = SELECT_CREDITS(conn)
-            await message.answer("Кредит одобрен!")
+            execute_query(conn, f"INSERT INTO requests(user, num) VALUES(\"{ALL.LOGIN[message.chat.id]}\", {num})")
+            ALL.REQUESTS = SELECT_REQUESTS(conn)
+            await message.answer("Кредит запрошен...")
         else:
             await message.answer("Пожалуйста, введите через пробел количество пятерок")
     else:
@@ -368,6 +369,7 @@ async def _execcom(message):
         res = str(execute_read_query(conn, query))
         ALL.USERS = SELECT_USERS(conn)
         ALL.CREDITS = SELECT_CREDITS(conn)
+        ALL.REQUESTS = SELECT_REQUESTS(conn)
         await message.answer(res)
 
 async def _stop(message):
@@ -432,6 +434,41 @@ async def _credlist(message):
             res += str(user) + "\n"
         await message.answer(res)
 
+async def _reqlist(message):
+    COMNAME = "reqlist"
+    logging.info(message)
+    set_default_login(message.chat.id)
+
+    if ALL.LOGIN[message.chat.id] == "default":
+        await message.answer("Вы еще не вошли в систему!")
+    elif can_call(COMNAME, message.chat.id):
+        if len(ALL.REQUESTS) == 0:
+            await message.answer("Запросов нет!")
+            return 0
+        c = req(ALL.REQUESTS[0])
+        inline_kb_full = InlineKeyboardMarkup(row_width=2).add(InlineKeyboardButton('Одобрить', callback_data='reqac'))
+        inline_kb_full.add(InlineKeyboardButton('Отклонить', callback_data='reqdec'))
+        await message.reply(f"Кредит запрошен {c['user']} на {c['num']} пятерок", reply_markup=inline_kb_full)
+
+@dp.callback_query_handler(lambda c: c.data in ["reqac", "reqdec"])
+async def button_callback(callback_query: types.CallbackQuery):
+    print(callback_query)
+    if callback_query.data == "reqac":
+        c = req(ALL.REQUESTS[0])
+        execute_query(conn, f"INSERT INTO credits (user, num) VALUES (\"{c['user']}\", {c['num']})")
+        execute_query(conn, f"DELETE FROM requests WHERE req_id={c['req_id']}")
+        ALL.CREDITS = SELECT_CREDITS(conn)
+        await bot.answer_callback_query(callback_query.id)
+        await bot.send_message(callback_query.from_user.id, 'Кредит одобрен!')
+        await bot.delete_message(callback_query.from_user.id, callback_query.message.message_id)
+    elif callback_query.data == "reqdec":
+        c = req(ALL.REQUESTS[0])
+        execute_query(conn, f"DELETE FROM requests WHERE req_id={c['req_id']}")
+        await bot.answer_callback_query(callback_query.id)
+        await bot.send_message(callback_query.from_user.id, 'Кредит отклонен!')
+        await bot.delete_message(callback_query.from_user.id, callback_query.message.message_id)
+    ALL.REQUESTS = SELECT_REQUESTS(conn)
+
 COMLIST = {
     "start": _start,
     "reg": _reg,
@@ -448,7 +485,8 @@ COMLIST = {
     "stop": _stop,
     "msgall": _msgall,
     "acredits": _acredits,
-    "credlist": _credlist
+    "credlist": _credlist,
+    "reqlist": _reqlist
 }
 
 async def main():
@@ -489,6 +527,7 @@ async def main():
     check_db(conn)
     ALL.USERS = SELECT_USERS(conn)
     ALL.CREDITS = SELECT_CREDITS(conn)
+    ALL.REQUESTS = SELECT_REQUESTS(conn)
     print("User list:")
     print(ALL.USERS)
     print("Credits list:")

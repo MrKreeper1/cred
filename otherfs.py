@@ -22,6 +22,13 @@ def cred(el):
         "status": el[6]
     }
     return res
+def req(el):
+    res = {
+        "req_id": el[0],
+        "user": el[1],
+        "num": el[2]
+    }
+    return res
 def get_allowed_commands(priv):
     com = []
     if priv >= 1:
@@ -29,5 +36,5 @@ def get_allowed_commands(priv):
     if priv >= 2:
         com += ["alogin", "aprofile", "userlist", "execcom", "msgall", "acredits", "credlist"]
     if priv >= 3:
-        com += ["stop"]
+        com += ["stop", "reqlist"]
     return com

@@ -27,11 +27,22 @@ CREATE TABLE IF NOT EXISTS credits (
 );
 """
 
+CREATE_DATABASE_QUERY3 = """
+CREATE TABLE IF NOT EXISTS requests (
+  req_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user TEXT NOT NULL,
+  num INTEGER NOT NULL DEFAULT(1)
+);
+"""
+
 DROP_DATABASE_QUERY1 = """
 DROP TABLE users;
 """
 DROP_DATABASE_QUERY2 = """
 DROP TABLE credits;
+"""
+DROP_DATABASE_QUERY3 = """
+DROP TABLE requests;
 """
 
 logging.basicConfig(level=logging.INFO, filename="logs.log",filemode="a", encoding="utf-8")
@@ -74,11 +85,13 @@ def INIT(conn):
     print("***********\nDB initialization!\n***********")
     execute_query(conn, CREATE_DATABASE_QUERY1)
     execute_query(conn, CREATE_DATABASE_QUERY2)
+    execute_query(conn, CREATE_DATABASE_QUERY3)
 
 def DROP_ALL(conn):
     print("***********\nDB dropping!\n***********")
     execute_query(conn, DROP_DATABASE_QUERY1)
     execute_query(conn, DROP_DATABASE_QUERY2)
+    execute_query(conn, DROP_DATABASE_QUERY3)
 
 def RECREATE(conn):
     DROP_ALL(conn)
@@ -89,6 +102,9 @@ def SELECT_USERS(conn):
 
 def SELECT_CREDITS(conn):
     return execute_read_query(conn, "SELECT * FROM credits")
+
+def SELECT_REQUESTS(conn):
+    return execute_read_query(conn, "SELECT * FROM requests")
 
 def register(conn, _name, _surname, _class, _login, _password):
     query = f"""INSERT INTO users(name, surname, class, login, password, balance) VALUES ('{_name}', '{_surname}', '{_class}', '{_login}', '{_password}', 0);

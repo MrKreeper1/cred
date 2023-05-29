@@ -1885,3 +1885,238 @@ INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   c
 INFO:aiogram.dispatcher.dispatcher:Start polling.
 INFO:root:{"message_id": 907, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685379939, "text": "/userlist", "entities": [{"type": "bot_command", "offset": 0, "length": 9}]}
 WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 909, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685381645, "text": "/request 5", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO requests(user, num) VALUES("admin", 5)
+INFO:root:{"message_id": 911, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685381653, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 912, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685381677, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 913, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685381791, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:The error 'near "admin": syntax error' occurred in 'INSERT INTO credits (user, num) VALUES admin, 5'
+INFO:root:{"message_id": 916, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685381812, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 918, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685381863, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 920, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685381891, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO credits (user, num) VALUES ("admin", 5)
+INFO:root:Query executed successfully -DELETE FROM requests WHERE req_id=1
+INFO:root:{"message_id": 923, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685381899, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+INFO:root:{"message_id": 925, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685381905, "text": "/request 228", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO requests(user, num) VALUES("admin", 228)
+INFO:root:{"message_id": 927, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685381909, "text": "/request 228", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO requests(user, num) VALUES("admin", 228)
+INFO:root:{"message_id": 929, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685381912, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 931, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685381931, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 933, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685381934, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 935, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685381937, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully -UPDATE users SET balance = 5 WHERE login="admin"
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 937, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685381978, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO credits (user, num) VALUES ("admin", 228)
+INFO:root:Query executed successfully -DELETE FROM requests WHERE req_id=2
+INFO:root:{"message_id": 940, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382063, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+INFO:root:{"message_id": 942, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382095, "text": "/request 258", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO requests(user, num) VALUES("admin", 258)
+INFO:root:{"message_id": 944, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382098, "text": "/request 238", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO requests(user, num) VALUES("admin", 238)
+INFO:root:{"message_id": 946, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382099, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 948, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382103, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO credits (user, num) VALUES ("admin", 228)
+INFO:root:Query executed successfully -DELETE FROM requests WHERE req_id=3
+INFO:root:{"message_id": 951, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382108, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO credits (user, num) VALUES ("admin", 258)
+INFO:root:Query executed successfully -DELETE FROM requests WHERE req_id=4
+INFO:root:{"message_id": 954, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382113, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO credits (user, num) VALUES ("admin", 238)
+INFO:root:Query executed successfully -DELETE FROM requests WHERE req_id=5
+INFO:root:{"message_id": 957, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382119, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully -UPDATE users SET balance = 9 WHERE login="admin"
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 959, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382260, "text": "/request 5", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO requests(user, num) VALUES("admin", 5)
+INFO:root:{"message_id": 961, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382262, "text": "/request 0", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO requests(user, num) VALUES("admin", 0)
+INFO:root:{"message_id": 963, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382265, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO credits (user, num) VALUES ("admin", 5)
+INFO:root:Query executed successfully -DELETE FROM requests WHERE req_id=6
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-24' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=AttributeError("'CallbackQuery' object has no attribute 'reply_to_message'")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 283, in process_update
+    return await self.callback_query_handlers.notify(update.callback_query)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\main.py", line 459, in button_callback
+    await bot.delete_message(callback_query.from_user.id, callback_query.reply_to_message.message_id)
+AttributeError: 'CallbackQuery' object has no attribute 'reply_to_message'
+INFO:root:{"message_id": 966, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382271, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -DELETE FROM requests WHERE req_id=7
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-35' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=AttributeError("'CallbackQuery' object has no attribute 'reply_to_message'")>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 283, in process_update
+    return await self.callback_query_handlers.notify(update.callback_query)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\main.py", line 465, in button_callback
+    await bot.delete_message(callback_query.from_user.id, callback_query.reply_to_message.message_id)
+AttributeError: 'CallbackQuery' object has no attribute 'reply_to_message'
+INFO:root:{"message_id": 969, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382279, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully -UPDATE users SET balance = 10 WHERE login="admin"
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 971, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382362, "text": "/my_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+INFO:root:{"message_id": 973, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382366, "text": "/request 0", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO requests(user, num) VALUES("admin", 0)
+INFO:root:{"message_id": 975, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382368, "text": "/request -1", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO requests(user, num) VALUES("admin", -1)
+INFO:root:{"message_id": 977, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382372, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -DELETE FROM requests WHERE req_id=8
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-30' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=KeyError('reply_to_message')>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 283, in process_update
+    return await self.callback_query_handlers.notify(update.callback_query)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\main.py", line 465, in button_callback
+    await bot.delete_message(callback_query.from_user.id, callback_query["reply_to_message"]["message_id"])
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\types\base.py", line 234, in __getitem__
+    return self.values[item]
+KeyError: 'reply_to_message'
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 980, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382460, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -DELETE FROM requests WHERE req_id=9
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-13' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=MessageIdentifierNotSpecified('Message identifier is not specified')>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 283, in process_update
+    return await self.callback_query_handlers.notify(update.callback_query)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\main.py", line 465, in button_callback
+    await bot.delete_message(callback_query.from_user.id, callback_query.id)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\bot\bot.py", line 2950, in delete_message
+    return await self.request(api.Methods.DELETE_MESSAGE, payload)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\bot\base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\bot\api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\bot\api.py", line 115, in check_result
+    exceptions.BadRequest.detect(description)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\utils\exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.MessageIdentifierNotSpecified: Message identifier is not specified
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 983, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382539, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-6' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=IndexError('list index out of range')>
+Traceback (most recent call last):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\Тимофей-ПК\AppData\Local\Programs\Python\Python39\lib\site-packages\aiogram\dispatcher\handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "e:\cred\main.py", line 444, in _reqlist
+    c = req(SELECT_REQUESTS(conn)[0])
+IndexError: list index out of range
+INFO:root:{"message_id": 984, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382544, "text": "/request -1", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO requests(user, num) VALUES("admin", -1)
+INFO:root:{"message_id": 986, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382546, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -DELETE FROM requests WHERE req_id=10
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 989, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382630, "text": "/request 15555", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO requests(user, num) VALUES("admin", 15555)
+INFO:root:{"message_id": 991, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382635, "text": "/request 123", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO requests(user, num) VALUES("admin", 123)
+INFO:root:{"message_id": 993, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382637, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -DELETE FROM requests WHERE req_id=11
+INFO:root:{"message_id": 996, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382653, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO credits (user, num) VALUES ("admin", 123)
+INFO:root:Query executed successfully -DELETE FROM requests WHERE req_id=12
+INFO:root:{"message_id": 999, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382674, "text": "/My_credits", "entities": [{"type": "bot_command", "offset": 0, "length": 11}]}
+INFO:root:{"message_id": 1001, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382750, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS users (   id INTEGER PRIMARY KEY AUTOINCREMENT,   name TEXT NOT NULL,   surname TEXT NOT NULL,   class TEXT NOT NULL,   login TEXT NOT NULL,   password TEXT NOT NULL,   balance INTEGER NOT NULL DEFAULT(0),   privilege INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS credits (   cred_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1),   start_date DATE NOT NULL,   finish_date DATE,   desc TEXT,   status NUMBER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully - CREATE TABLE IF NOT EXISTS requests (   req_id INTEGER PRIMARY KEY AUTOINCREMENT,   user TEXT NOT NULL,   num INTEGER NOT NULL DEFAULT(1) ); 
+INFO:root:Query executed successfully -UPDATE users SET balance = 11 WHERE login="admin"
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:{"message_id": 1003, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382893, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 1005, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382919, "text": "/execcom INSERT INTO requests(user, num) VALUES (\"svph\", 12345678910)", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:{"message_id": 1007, "from": {"id": 1647252544, "is_bot": false, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "language_code": "ru"}, "chat": {"id": 1647252544, "first_name": "Тимофей", "last_name": "Блинов", "username": "ya_blinchik", "type": "private"}, "date": 1685382923, "text": "/reqlist", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
+INFO:root:Query executed successfully -INSERT INTO credits (user, num) VALUES ("svph", 12345678910)
+INFO:root:Query executed successfully -DELETE FROM requests WHERE req_id=13
+WARNING:aiogram.dispatcher.dispatcher:Polling is stopped.
