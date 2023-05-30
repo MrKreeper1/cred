@@ -479,12 +479,24 @@ async def button_callback(callback_query: types.CallbackQuery):
         execute_query(conn, f"DELETE FROM requests WHERE req_id={c['req_id']}")
         ALL.CREDITS = SELECT_CREDITS(conn)
         ALL.USERS = SELECT_USERS(conn)
+
+        for el in ALL.LOGIN:
+            if ALL.LOGIN[el] == c["user"]:
+                await bot.send_message(el, f"Ваш кредит на {c['num']} пятерок одобрен!")
+                break
+
         await bot.answer_callback_query(callback_query.id)
         await bot.send_message(callback_query.from_user.id, 'Кредит одобрен!')
         await bot.delete_message(callback_query.from_user.id, callback_query.message.message_id)
     elif callback_query.data == "reqdec":
         c = req(ALL.REQUESTS[0])
         execute_query(conn, f"DELETE FROM requests WHERE req_id={c['req_id']}")
+
+        for el in ALL.LOGIN:
+            if ALL.LOGIN[el] == c["user"]:
+                await bot.send_message(el, f"Ваш кредит на {c['num']} пятерок отклонен!")
+                break
+
         await bot.answer_callback_query(callback_query.id)
         await bot.send_message(callback_query.from_user.id, 'Кредит отклонен!')
         await bot.delete_message(callback_query.from_user.id, callback_query.message.message_id)
