@@ -116,6 +116,7 @@ def check_db(conn):
     print("Checking DB...")
     users = SELECT_USERS(conn)
     creds = SELECT_CREDITS(conn)
+    reqs = SELECT_REQUESTS(conn)
     for u in users:
         num = 0
         u1 = user(u)
@@ -125,3 +126,14 @@ def check_db(conn):
         if u1["balance"] != num:
             print("Updating balance for", u1["login"])
             execute_query(conn, f"UPDATE users SET balance = {num} WHERE login=\"{u1['login']}\"")
+    loglist = []
+    for el in users:
+        loglist.append(user(el)["login"])
+    for c in creds:
+        if cred(c)["user"] not in loglist:
+            print(f"Deleting credit number {cred(c)['cred_id']} to {cred(c)['user']}")
+            execute_query(conn, f"DELETE FROM credits WHERE cred_id={cred(c)['cred_id']}")
+    for r in reqs:
+        if req(c)["user"] not in loglist:
+            print(f"Deleting request number {req(c)['req_id']} to {req(c)['user']}")
+            execute_query(conn, f"DELETE FROM requests WHERE cred_id={req(c)['req_id']}")

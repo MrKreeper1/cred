@@ -267,8 +267,14 @@ async def _userlist(message):
         await message.answer("Вы еще не вошли в систему!")
     elif can_call(COMNAME, message.chat.id):
         res = "Список пользователей в системе:\n"
-        for user in ALL.USERS:
-            res += str(user) + "\n"
+        for usern in ALL.USERS:
+            if get_user(message.chat.id)["privilege"] > user(usern)["privilege"]:
+                res += str(usern) + "\n"
+            else:
+                usern = list(usern)
+                usern[4] = "#"
+                usern[5] = "#"
+                res += str(tuple(usern)) + "\n"
         await message.answer(res)
 
 async def _request(message):
@@ -321,9 +327,11 @@ async def _alogin(message):
         await message.answer("Вы еще не вошли в систему!")
     elif can_call(COMNAME, message.chat.id):
         user_ = message.get_args()
-        if len(user_) > 0:
+        if len(user_) > 0 and get_user(message.chat.id)["privilege"] >= get_profile(user_)["privilege"]:
             ALL.LOGIN[message.chat.id] = user_
             await message.answer("Вход успешен!")
+        elif get_user(message.chat.id)["privilege"] < get_profile(user_)["privilege"]:
+            await message.answer("Уровень привилегий этого пользователя выше, чем у вас!")
         else:
             await message.answer("Введите логин через пробел!")
 
@@ -337,6 +345,9 @@ async def _aprofile(message):
         user_ = message.get_args()
         if len(user_) > 0:
             i1 = get_profile(user_)
+            if i1 == {}:
+                await message.answer("Такого пользователя не существует!")
+                return 0
             msg = f"""Профиль
     Логин: {i1["login"]}
     Имя: {i1["name"]}
@@ -357,6 +368,9 @@ async def _execcom(message):
         await message.answer("Вы еще не вошли в систему!")
     elif can_call(COMNAME, message.chat.id):
         query = message.get_args()
+        if query == "":
+            await message.answer("Пожалуйста, введите запрос через пробел после команды!")
+            return 0
         if query == "INIT":
             INIT(conn)
             await message.answer("DB initialization...")
@@ -387,6 +401,7 @@ async def _execpyc(message):
     elif can_call(COMNAME, message.chat.id):
         query = message.get_args()
         if query == "":
+            await message.answer("Пожалуйста, введите запрос через пробел после команды!")
             return 0
         await bot.delete_message(message.chat.id, message.message_id)
         if query[0] == "!" and query != "!":
@@ -419,6 +434,8 @@ async def _msgall(message):
             await bot.delete_message(message.chat.id, message.message_id)
             for user in ALL.LOGIN:
                 await bot.send_message(user, "*Сообщение!*\n" + text, parse_mode="Markdown")
+        else:
+            await message.answer("Пожалуйста, введите текст сообщения через пробел!")
 
 async def _acredits(message):
     COMNAME = "acredits"
@@ -441,6 +458,8 @@ async def _acredits(message):
             if res == "":
                 res = "Кредитов нет!"
             await message.answer(res)
+        else:
+            await message.answer("Пожалуйста, введите пользователя после команды через пробел!")
 
 async def _credlist(message):
     COMNAME = "credlist"
@@ -469,10 +488,9 @@ async def _reqlist(message):
         c = req(ALL.REQUESTS[0])
         inline_kb_full = InlineKeyboardMarkup(row_width=2).add(InlineKeyboardButton('Одобрить', callback_data='reqac'))
         inline_kb_full.add(InlineKeyboardButton('Отклонить', callback_data='reqdec'))
-        await message.reply(f"Кредит запрошен {c['user']} на {c['num']} пятерок", reply_markup=inline_kb_full)
+        await message.reply(f"Кредит запрошен {c['user']} на {c['num']} пятерок. Еще {len(ALL.REQUESTS) - 1} запросов", reply_markup=inline_kb_full)
 
 async def button_callback(callback_query: types.CallbackQuery):
-    print(callback_query)
     if callback_query.data == "reqac":
         c = req(ALL.REQUESTS[0])
         execute_query(conn, f"INSERT INTO credits (user, num) VALUES (\"{c['user']}\", {c['num']})")
@@ -552,11 +570,10 @@ async def _getlogs(message):
             res = "Логи:\n"
             with open("logs.log", "r", encoding="utf-8") as f:
                 lines = f.readlines()
-            if len(lines) > int(num):
-                res += "\n".join(lines[-int(num):])
-            else:
-                res += "\n".join(lines)
-            await message.answer(res)
+            for i in range(max(0, len(lines) - int(num)), len(lines)):
+                res += lines[i]
+                await message.answer(res)
+                res = ""
 
 COMLIST = {
     "start": _start,
