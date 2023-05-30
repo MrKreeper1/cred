@@ -268,7 +268,7 @@ async def _userlist(message):
     elif can_call(COMNAME, message.chat.id):
         res = "Список пользователей в системе:\n"
         for usern in ALL.USERS:
-            if get_user(message.chat.id)["privilege"] > user(usern)["privilege"]:
+            if get_user(message.chat.id)["privilege"] > user(usern)["privilege"] or get_user(message.chat.id)["login"] == user(usern)["login"] or get_user(message.chat.id)["privilege"] == 3:
                 res += str(usern) + "\n"
             else:
                 usern = list(usern)
