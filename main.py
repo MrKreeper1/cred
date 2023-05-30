@@ -40,6 +40,7 @@ HELP3 = """/stop - остановить сервер
 /reqlist - просмотреть и одобрить/отклонить первую заявку на кредит
 /repaycred {номера_кредитов_через_запятую} - погасить кредиты с указанными уникальными номерами
 /execpyc {команда_или_!команда} - выполнить команду от имени Python, Указать ! перед командой для выполнения команды, без - для получения данных
+/getlogs {количество} - получить указанное количество строк из конца файла логов
 """
 
 def get_user(chat_id):
@@ -538,6 +539,25 @@ async def _acredlist(message):
                 res += str(credit) + "\n"
         await message.answer(res)
 
+async def _getlogs(message):
+    COMNAME = "getlogs"
+    logging.info(message)
+    set_default_login(message.chat.id)
+
+    if ALL.LOGIN[message.chat.id] == "default":
+        await message.answer("Вы еще не вошли в систему!")
+    elif can_call(COMNAME, message.chat.id):
+        num = message.get_args()
+        if num.isdigit():
+            res = "Логи:\n"
+            with open("logs.log", "r", encoding="utf-8") as f:
+                lines = f.readlines()
+            if len(lines) > int(num):
+                res += "\n".join(lines[-int(num):])
+            else:
+                res += "\n".join(lines)
+            await message.answer(res)
+
 COMLIST = {
     "start": _start,
     "reg": _reg,
@@ -558,7 +578,8 @@ COMLIST = {
     "reqlist": _reqlist,
     "repaycred": _repaycred,
     "acredlist": _acredlist,
-    "execpyc": _execpyc
+    "execpyc": _execpyc,
+    "getlogs": _getlogs
 }
 
 async def main():

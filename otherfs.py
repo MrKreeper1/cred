@@ -36,5 +36,5 @@ def get_allowed_commands(priv):
     if priv >= 2:
         com += ["alogin", "aprofile", "userlist", "msgall", "acredits", "credlist", "acredlist"]
     if priv >= 3:
-        com += ["execcom", "stop", "reqlist", "repaycred", "execpyc"]
+        com += ["execcom", "stop", "reqlist", "repaycred", "execpyc", "getlogs"]
     return com
